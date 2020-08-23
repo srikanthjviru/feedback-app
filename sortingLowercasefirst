@@ -1,0 +1,57 @@
+var data = [
+	{ name: "123" },
+	{ name: "axxe" },
+	{ name: "Apple" },
+	{ name: "foo" },
+	{ name: "Foo" },
+	{ name: "john" },
+	{ name: "John" },
+	{ name: "kool" },
+	{
+		name: "Kaoool"
+	},
+	{
+		name: "kXiik"
+	},
+	{ name: "Kxakf" }
+];
+// var data = [{ name: 'a' }, { name: 'A' }];
+
+function getStringCompare(a, b) {
+	if (!a && !b) return 0;
+
+	if (!a && b) return -1;
+
+	if (a && !b) return 1;
+
+	var minLen = Math.min(a.length, b.length);
+
+	var aCharCode, bCharCode;
+	for (var i = 0; i < minLen; i++) {
+		aCharCode = a.charCodeAt(i);
+		bCharCode = b.charCodeAt(i);
+
+		if (aCharCode >= 97 && aCharCode <= 122) {
+			aCharCode -= 32.5;
+		}
+
+		if (bCharCode >= 97 && bCharCode <= 122) {
+			bCharCode -= 32.5;
+		}
+
+		console.log(aCharCode, bCharCode);
+
+		if (aCharCode < bCharCode) return -1;
+		if (aCharCode > bCharCode) return 1;
+	}
+
+	if (a.length < b.length) return -1;
+	if (b.length > b.length) return 1;
+	return 0;
+}
+
+data.sort((prev, curr) => {
+	return getStringCompare(prev.name, curr.name);
+});
+
+console.log(data);
