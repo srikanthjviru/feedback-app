@@ -1,0 +1,63 @@
+import React from 'react';
+import { Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
+import EyeIcon from '@material-ui/icons/EnhancedEncryption';
+
+import useStyle from './style';
+
+const data = [
+  {
+    userGroupName: "test",
+    startDate: "test date",
+    endDate: 'test end date',
+  },
+  {
+    userGroupName: "test",
+    startDate: "test date",
+    endDate: 'test end date',
+  }
+]
+
+const App = () => {
+  const classes = useStyle();
+  return (
+    <div className={classes.table}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell className={classes.tableHead} >User Group Name</TableCell>
+            <TableCell className={classes.tableHead}>Start Date</TableCell>
+            <TableCell className={classes.tableHead}>End Date</TableCell>
+            <TableCell className={classes.tableHead} align="right" width={14}></TableCell>
+            <TableCell className={classes.tableHead} align="right" width={14}></TableCell>
+            <TableCell className={classes.tableHead} align="right" width={14}></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((element, index) => (
+            <React.Fragment key={index}>
+              <TableRow classes={{ root: classes.tableRow }}>
+                <TableCell classes={{ root: classes.tableCellRoot, sizeSmall: classes.tableCellRoot }}>{element.userGroupName}</TableCell>
+                <TableCell classes={{ root: classes.tableCellRoot, sizeSmall: classes.tableCellRoot }}>{element.startDate}</TableCell>
+                <TableCell classes={{ root: classes.tableCellRoot, sizeSmall: classes.tableCellRoot }}>{element.endDate}</TableCell>
+                <TableCell classes={{ root: classes.tableIconCell, sizeSmall: classes.tableIconCell }} align="right">
+                  <EyeIcon className={classes.tableIcon} fontSize="small" />
+                </TableCell>
+                <TableCell classes={{ root: classes.tableIconCell, sizeSmall: classes.tableIconCell }} align="right">
+                  <EyeIcon className={classes.tableIcon} fontSize="small" />
+                </TableCell>
+                <TableCell classes={{ root: classes.tableIconCell, sizeSmall: classes.tableIconCell }} align="right">
+                  <EyeIcon className={classes.tableIcon} fontSize="small" />
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell colSpan={4} classes={{ root: classes.spacer }}></TableCell>
+              </TableRow>
+            </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  )
+}
+
+export default App;
